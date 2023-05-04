@@ -31,7 +31,7 @@ class Hotel(Resource):
             return hotel.json()
         return {'message': 'Hotel not found.'}, 404 # not found
 
-    @jwt_required()
+    @jwt_required
     def post(self, hotel_id): 
         if HotelModel.find_hotel(hotel_id):
             return{'message': 'Hotel ID "{}" already exists.'.format(hotel_id)}, 400
