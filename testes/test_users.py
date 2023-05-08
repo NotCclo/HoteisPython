@@ -17,6 +17,11 @@ def t_delete_user(login):
         banco.session.delete(user)
         banco.session.commit()
     return 404 
+    
+def t_delete_all_users():
+    for user in UserModel.query.all():
+        banco.session.delete(user)
+        banco.session.commit()
 
 def test_get_user(client):
 
@@ -44,9 +49,11 @@ def test_del_user(client):
 
     with app.app_context():
 
-        uid_test = "1"
-        login_test = "zedapadoca"
-        senha_test = "teste95"
+        uid_test = "43"
+        login_test = "demo"
+        senha_test = "demo"
+
+
 
         t_add_user (uid_test, login_test, senha_test)
 
@@ -90,12 +97,18 @@ def test_cadastro(client):
 def test_login(client):
 
     with app.app_context():
+        
+        userid_test = 43
+        login_test = "demo"
+        senha_test = "demo"
 
         url = "/login"
         data = {
-        "login": "demo",
-        "senha": "demo"
+        "login": login_test,
+        "senha": senha_test
         }
+
+        t_add_user(userid_test, login_test, senha_test)
 
         response = client.post(url, data=json.dumps(data), headers={
             'Content-Type': 'application/json',

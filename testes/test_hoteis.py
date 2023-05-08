@@ -1,6 +1,7 @@
 from conftest import *
 from models.hotel import HotelModel
 from test_sites import t_add_site, t_delete_site, t_delete_all_sites
+from test_users import t_delete_all_users, t_add_user, t_delete_user
 
 
 def t_add_hotel(hotelid, hotelsiteid, hotelestrelas, hotelcidade, hoteldiaria, hotelnome):
@@ -114,9 +115,15 @@ def test_post_hotel(client):
         siteid_test = 2
         hoteis_test = []
 
+        userid_test = 43
+        login_test = "demo"
+        senha_test = "demo"
+
+        t_delete_all_users()
         t_delete_all_hoteis()
         t_delete_all_sites()
 
+        t_add_user (userid_test, login_test, senha_test)
         t_add_site (url_test, siteid_test, hoteis_test)
 
         hid_test = "teste"
@@ -150,6 +157,7 @@ def test_post_hotel(client):
         assert object["diaria"] == dia_test
         assert object["nome"] == nom_test
 
+        t_delete_user(login_test)
         t_delete_hotel(hid_test)
         t_delete_site(url_test)
 
@@ -161,9 +169,15 @@ def test_del_hotel(client):
         siteid_test = 2
         hoteis_test = []
 
+        userid_test = 43
+        login_test = "demo"
+        senha_test = "demo"
+
+        t_delete_all_users()
         t_delete_all_hoteis()
         t_delete_all_sites()
 
+        t_add_user (userid_test, login_test, senha_test)
         t_add_site (url_test, siteid_test, hoteis_test)
 
         hid_test = "teste"
@@ -187,6 +201,8 @@ def test_del_hotel(client):
         assert response.status_code == 200
         assert hotel == None
 
+        t_delete_user(login_test)
+
 def test_put_hotel(client):
 
     with app.app_context():
@@ -195,9 +211,15 @@ def test_put_hotel(client):
         siteid_test = 2
         hoteis_test = []
 
+        userid_test = 43
+        login_test = "demo"
+        senha_test = "demo"
+
+        t_delete_all_users()
         t_delete_all_hoteis()
         t_delete_all_sites()
 
+        t_add_user (userid_test, login_test, senha_test)
         t_add_site (url_test, siteid_test, hoteis_test)
 
         hid_test = "teste"
@@ -231,5 +253,6 @@ def test_put_hotel(client):
         assert object["diaria"] == dia_test
         assert object["nome"] == nom_test
 
+        t_delete_user(login_test)
         t_delete_hotel(hid_test)
         t_delete_site(url_test)
