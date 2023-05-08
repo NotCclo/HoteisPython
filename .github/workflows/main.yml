@@ -11,7 +11,7 @@ jobs:
         image: postgres:11.6
         env:
           POSTGRES_USER: postgres
-          POSTGRES_DB: banco
+          POSTGRES_DB: api_hoteis
         ports:
           - 5432:5432
     steps:
