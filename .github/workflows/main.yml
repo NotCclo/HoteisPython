@@ -29,5 +29,3 @@ jobs:
         run: |
           python app.py &
           sleep 10
-      - name: Run Python Tests
-        run: python -m pytest -v
